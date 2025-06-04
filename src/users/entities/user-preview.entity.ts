@@ -1,6 +1,6 @@
 import { ApiProperty } from "@nestjs/swagger";
 import { Exclude, Expose } from "class-transformer";
-import { IsJSON, IsString, IsUrl, isURL, IsUUID } from "class-validator";
+import { IsString, IsUrl, IsUUID } from "class-validator";
 
 export class UserPreview {
 

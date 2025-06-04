@@ -17,7 +17,7 @@ async function bootstrap() {
       type: 'http',
       scheme: 'bearer',
       bearerFormat: 'JWT'
-    }, 'JWT-auth')
+    }, 'bearerAuth')
     .build();
 
   const document = SwaggerModule.createDocument(app, config);
