@@ -29,7 +29,6 @@
 
 ```bash
 $ npm install
-$ docker-compose up
 ```
 
 ## Compile and run the project
@@ -37,9 +36,11 @@ $ docker-compose up
 ```bash
 # development
 $ npm run start
+$ docker-compose up
 
 # watch mode
 $ npm run start:dev
+$ docker-compose up
 
 # production mode
 $ npm run start:prod
