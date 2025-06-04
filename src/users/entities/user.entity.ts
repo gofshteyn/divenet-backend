@@ -1,7 +1,7 @@
 import { ApiProperty } from "@nestjs/swagger";
 import { UserPreview } from "./user-preview.entity";
 import { Exclude, Expose, Type } from "class-transformer";
-import { IsBoolean, IsDate, IsEmail, IsJSON, IsOptional, IsString } from 'class-validator';
+import { IsBoolean, IsDate, IsEmail, IsJSON, IsOptional, IsString, IsUUID } from 'class-validator';
 
 export enum Gender {
   MALE = 'male',
@@ -60,6 +60,10 @@ export class User extends UserPreview {
     @IsString()
     @ApiProperty({ example: 'USDT', required: false, description: 'Валюта' })
     currencyId: string;
+
+    @Exclude()
+    @IsUUID()
+    referrerId: string;
 
     @Exclude()
     @IsString()
