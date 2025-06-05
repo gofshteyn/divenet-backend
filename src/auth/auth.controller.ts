@@ -46,7 +46,7 @@ export class AuthController {
         refreshToken: { type: 'string', description: 'Refresh token', example: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjdhZWM1MWNjLTlmMTItNDg0NC05YjcxLTM4ZTk2MGQ2ZjUyZiJ9.q1Bm-KytrkltAUBR13xr03QRMsJHA62Y4cuUFJAM31w' },
       },
     },
-    description: 'Данные сеанса пользователя',
+    description: 'Данные сеанса пользователя'
   })
   @ApiResponse({ status: HttpStatus.BAD_REQUEST, description: 'Bad Request' })
   @ApiResponse({ status: HttpStatus.UNAUTHORIZED, description: 'Пользователь не авторизован' })

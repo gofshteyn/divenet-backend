@@ -1,0 +1,47 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("POSTGRES_URI")
+}
+
+model Language {
+  id                 String    @id @db.Char(2)
+  code               String?   @db.VarChar(3)
+  displayName        String    @map("display_name") @db.VarChar(100)
+  displayNameLocales Json?     @map("display_name_locales")
+  imageUrl           String?   @map("image_url") @db.VarChar(255)
+  createdAt          DateTime  @default(now()) @map("created_at")
+  updatedAt          DateTime? @updatedAt @map("updated_at")
+  deletedAt          DateTime? @map("deleted_at") @db.Timestamp
+  locales            Locale[] // Связь с локализациями
+
+  @@map("languages")
+}
+
+model Locale {
+  languageId String    @id @map("language_id") @db.Char(2)
+  isDefault  Boolean   @default(false) @map("is_default")
+  createdAt  DateTime  @default(now()) @map("created_at")
+  updatedAt  DateTime? @updatedAt @map("updated_at")
+  deletedAt  DateTime? @map("deleted_at") @db.Timestamp
+  language   Language  @relation(fields: [languageId], references: [id])
+
+  @@unique([languageId, isDefault]) // Это будет гарантировать, что для одного языка можно иметь только одну локализацию по умолчанию
+  @@map("locales")
+}
+
+model Currency {
+  id                 String    @id @db.VarChar(4)
+  displayName        String    @map("display_name") @db.VarChar(100)
+  displayNameLocales Json?     @map("display_name_locales")
+  symbol             String?   @db.Char(5)
+  isDefault          Boolean   @default(false) @map("is_default")
+  createdAt          DateTime  @default(now()) @map("created_at")
+  updatedAt          DateTime? @updatedAt @map("updated_at")
+  deletedAt          DateTime? @map("deleted_at") @db.Timestamp
+
+  @@map("currencies") // Название таблицы в базе данных
+}
