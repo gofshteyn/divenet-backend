@@ -160,7 +160,7 @@ export class UsersController {
   @ApiResponse({ status: HttpStatus.BAD_REQUEST, description: 'Bad request' })
   @ApiResponse({ status: HttpStatus.INTERNAL_SERVER_ERROR, description: 'Internal server error' })
   @ApiOkResponse({
-    description: 'Возвращает true в случае существования пользователя с указанным emaiil и false если он отсутствует.'
+    description: 'Возвращает true в случае существования пользователя с указанным email и false если он отсутствует.'
   })
   async emailExists(@Query('email') email: string) {
   };

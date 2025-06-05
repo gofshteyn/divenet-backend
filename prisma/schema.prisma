@@ -17,6 +17,7 @@ model Language {
   updatedAt          DateTime? @updatedAt @map("updated_at")
   deletedAt          DateTime? @map("deleted_at") @db.Timestamp
   locales            Locale[] // Связь с локализациями
+  Country            Country[]
 
   @@map("languages")
 }
@@ -42,6 +43,29 @@ model Currency {
   createdAt          DateTime  @default(now()) @map("created_at")
   updatedAt          DateTime? @updatedAt @map("updated_at")
   deletedAt          DateTime? @map("deleted_at") @db.Timestamp
+  Country            Country[]
 
   @@map("currencies") // Название таблицы в базе данных
+}
+
+model Country {
+  id                 String    @id @db.Char(2) // ISO 3166-1 alpha-2 код
+  code               String?   @db.Char(3) // ISO 3166-1 alpha-3 код
+  numericCode        String?   @map("numeric_code") @db.Char(3) // ISO 3166-1 numeric код
+  displayName        String    @map("display_name") @db.VarChar(100)
+  displayNameLocales Json?     @map("display_name_locales")
+  imageUrl           String?   @map("image_url") @db.VarChar(255)
+  phoneCode          String?   @map("phone_code") @db.VarChar(10)
+  currencyId         String?   @map("currency_id") @db.VarChar(4)
+  languageId         String?   @map("language_id") @db.Char(2)
+  createdAt          DateTime  @default(now()) @map("created_at")
+  updatedAt          DateTime? @updatedAt @map("updated_at")
+  deletedAt          DateTime? @map("deleted_at") @db.Timestamp
+
+  currency Currency? @relation(fields: [currencyId], references: [id])
+  language Language? @relation(fields: [languageId], references: [id])
+
+  @@index([currencyId])
+  @@index([languageId])
+  @@map("countries")
 }

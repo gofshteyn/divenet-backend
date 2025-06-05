@@ -61,6 +61,11 @@ export class User extends UserPreview {
     @ApiProperty({ example: 'USDT', required: false, description: 'Валюта' })
     currencyId: string;
 
+    @Expose()
+    @IsString()
+    @ApiProperty({ example: 'ru', required: false, description: 'Код страны' })
+    countryId: string;
+
     @Exclude()
     @IsUUID()
     referrerId: string;

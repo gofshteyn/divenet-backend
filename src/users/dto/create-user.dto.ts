@@ -38,6 +38,10 @@ export class CreateUserDto {
     @IsEmail()
     email: string;
 
+    @IsString()
+    @ApiProperty({ example: 'ru', required: false, description: 'Код страны' })
+    countryId: string;
+
     @ApiProperty({ example: 'ru', required: false, description: 'Локализация' })
     @IsString()
     localeId: string;

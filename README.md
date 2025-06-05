@@ -35,12 +35,14 @@ $ npm install
 
 ```bash
 # development
-$ npm run start
 $ docker-compose up
+$ npx prisma generate
+$ npm run start
 
 # watch mode
-$ npm run start:dev
 $ docker-compose up
+$ npx prisma generate
+$ npm run start:dev
 
 # production mode
 $ npm run start:prod
